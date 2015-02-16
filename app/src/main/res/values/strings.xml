@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Image Finder</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="SearachPromtp">Enter Search Value</string>
+    <string name="btSearch">Search</string>
+    <string name="image_title">Image Title</string>
+    <string name="title_activity_image_display">ImageDisplayActivity</string>
+    <string name="title_activity_configure_filters">ConfigureFilters</string>
+    <string-array name="imageSize_array">
+        <item>small</item>
+        <item>medium</item>
+        <item>large</item>
+        <item>xlarge</item>
+    </string-array>
+    <string-array name="colorFilter_array">
+        <item>black</item>
+        <item>brown</item>
+        <item>green</item>
+        <item>gray</item>
+        <item>green</item>
+    </string-array>
+    <string-array name="type_array">
+        <item>face</item>
+        <item>photo</item>
+        <item>clipart</item>
+        <item>lineart</item>
+    </string-array>
+
+</resources>

@@ -2,7 +2,9 @@ package com.codepath.gridimagesearch.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -88,7 +90,6 @@ public class SearchActivity extends ActionBarActivity {
         });
     }
     private void setupViews () {
-        etQuery = (EditText) findViewById(R.id.etSearchPromt);
         gvResults = (GridView) findViewById(R.id.gvImages);
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -110,10 +111,25 @@ public class SearchActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_image_display, menu);
-        return true;
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                query = new String(query);
+                onImageSearch(searchView, query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
-    public void onImageSearch(View v) {
-        query = etQuery.getText().toString();
+    public void onImageSearch(View v, String query) {
+       // query = etQuery.getText().toString();
         Toast.makeText(this, "Search for this: "+ query, Toast.LENGTH_SHORT).show();
         AsyncHttpClient client = new AsyncHttpClient();
         searchURL = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + query + "&rsz=8";
